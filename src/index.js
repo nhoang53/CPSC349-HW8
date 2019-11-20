@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 
 //Input gamebaord
-let size = 0;
+let size = 3;
 
 class Size extends React.Component {
   constructor(props) {
@@ -193,15 +193,8 @@ class Game extends React.Component {
           <ol>{moves}</ol>
         </div>
       </div>
-
-
     );
-
   }
-
-
-
-
 }
 
 // ========================================

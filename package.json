@@ -9,9 +9,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build": "parcel build src/index.js -d app/scripts/dist",
+    "watch": "parcel watch src/index.js -d app/scripts/dist"
+
   },
   "eslintConfig": {
     "extends": "react-app"
