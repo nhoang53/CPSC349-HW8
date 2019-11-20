@@ -2,6 +2,48 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+//Input gamebaord
+let size = 0;
+
+class Size extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+
+    size = this.state.value;
+    //alert('Game Board submitted: ' + size);
+    ReactDOM.render(
+      <div>
+        <div class = "status"> <Size/> </div>
+        <div class = "status"> <Game/> </div>
+      </div>, document.getElementById("root"));
+
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Input gameboard size you want:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
 function Square(props) {
   const className = 'square' + (props.highlight ? ' highlight' : '');
   return (
@@ -28,7 +70,7 @@ class Board extends React.Component {
 
   render() {
     // Use two loops to make the squares
-    const boardSize = 3;
+    const boardSize = size;
     let squares = [];
     for (let i = 0; i < boardSize; ++i) {
       let row = [];
@@ -151,13 +193,24 @@ class Game extends React.Component {
           <ol>{moves}</ol>
         </div>
       </div>
+
+
     );
+
   }
+
+
+
+
 }
 
 // ========================================
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(
+  <div>
+    <div class = "status"> <Size/> </div>
+    <div class = "status"> <Game/> </div>
+  </div>, document.getElementById("root"));
 
 function calculateWinner(squares) {
   const lines = [
